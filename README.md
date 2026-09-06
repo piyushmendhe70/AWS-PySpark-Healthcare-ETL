@@ -71,9 +71,9 @@ The platform uses an event-driven serverless workflow orchestrated by **AWS Step
  │                                CONSUMPTION & ANALYTICS                                 │
  │          Amazon Redshift / Athena          │      Executive Operational Dashboards     │
  └────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
-
-🚀 Key Engineering Capabilities
+## 🚀 Key Engineering Capabilities
 
 ● Metadata-Driven Configuration: Externalized schemas, data types, business keys, and DQ validation parameters into config/dev.yaml, eliminating hardcoded column dependencies.
 ● Medallion Data Lake Architecture: Structured separation into Bronze (raw audit), Silver (cleansed, conformed, tokenized), and Gold (curated Star Schema and FHIR R4 resources).
@@ -83,7 +83,7 @@ The platform uses an event-driven serverless workflow orchestrated by **AWS Step
 ● Spark Performance & Skew Mitigation: Implemented two-phase salted aggregations to balance skewed provider keys and prevent executor OOMs; tuned partition sizing (~128MB) to eliminate the small-files problem.
 ● Infrastructure as Code (IaC): 100% automated AWS resource management using modular Terraform (S3, AWS Glue 4.0, Lambda, Step Functions, CodeBuild, IAM, and SNS).
 
-🛡 Data Quality (DQ) & Quarantine Framework
+## 🛡 Data Quality (DQ) & Quarantine Framework
 The pipeline enforces strict data contracts at the Silver layer. Records failing validation are isolated into a quarantine S3 path with an appended quarantine_reason and quarantine_ts, ensuring bad data never halts downstream jobs.
 
 Core Validations Implemented:
@@ -95,7 +95,7 @@ Core Validations Implemented:
 ● Deduplication: Applies survivorship rules to eliminate duplicate test_id or survey_id rows based on natural business keys.
 
 
-🔒 Security & HIPAA Compliance
+## 🔒 Security & HIPAA Compliance
 Data privacy is enforced before records land in the Silver layer to ensure downstream analytics environments remain free of exposed Protected Health Information (PHI).
 
 ● Salted Hashing: SSN, phone_number, and email fields are passed through a SHA-256 hash with a secure salt, allowing deterministic joins across tables without exposing the underlying identifier.
@@ -103,7 +103,7 @@ Data privacy is enforced before records land in the Silver layer to ensure downs
 ● Encryption at Rest: All Amazon S3 buckets (Bronze, Silver, Gold, Quarantine) enforce AES-256 Server-Side Encryption (SSE-S3).
 
 
-💻 Local Development & Testing
+## 💻 Local Development & Testing
 The pipeline supports local execution without deploying to AWS by falling back to a local PySpark session.
 
 1. Clone and Setup
@@ -120,7 +120,7 @@ pytest tests/ -v --cov=src/glue --cov-report=term-missing
 python src/glue/main.py
 
 
-🤖 CI/CD Automation
+## 🤖 CI/CD Automation
 ● GitHub Actions: Enforces PEP-8 code styling (flake8), runs local PySpark unit tests (pytest), and checks Terraform syntax on every pull request.
 
 ● AWS CodePipeline & CodeBuild: Modular Terraform configuration (infra/modules/cicd) provisions automated cloud build workflows using buildspec/buildspec.yaml to deploy code artifacts directly to S3.
@@ -132,9 +132,7 @@ python src/glue/main.py
 
 ● Schema Evolution (Drift): Schemas are driven by config/dev.yaml rather than brittle inferSchema=True scans. Corrupt rows are isolated into quarantine via PySpark's _corrupt_record capture.
 
-👨‍💻 Author & Contact
-Piyush Mendhe
-
+## 👨‍💻 Author & Contact
 ● Data Engineering Projects (PySpark, SQL, AWS)
 
 ● Email: mendhepiyush4@gmail.com
