@@ -44,7 +44,7 @@ module "step_functions" {
   environment              = var.environment
   project_name             = var.project_name
   check_s3_file_lambda_arn = module.lambda.lambda_arn
-  glue_job_name            = module.glue_job_name
+  glue_job_name            = module.glue.glue_job_name
   s3_data_bucket           = module.s3.bucket_name
   sns_alert_topic_arn      = aws_sns_topic.alerts.arn
 }

@@ -38,7 +38,7 @@ jobs:
 
       - name: Run PySpark Unit Tests
         env:
-          PYTHONPATH: src/glue
+          PYTHONPATH: .
         run: |
           pytest tests/ -v
 
