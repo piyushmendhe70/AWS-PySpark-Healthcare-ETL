@@ -1,0 +1,3 @@
+emp_id,emp_name,ssn,supervisor,active,city,statecode,zipcode,primary_job,created_date,email,phone_number
+E001,John Doe,123-45-6789,Sup1,Active,Dallas,TX,75001,Nurse,2025-01-10 08:00:00,john.doe@hospital.org,555-0101
+E002,Jane Smith,987-65-4321,Sup2,Active,San Jose,CA,95101,Physician,2025-01-12 09:00:00,jane.smith@gmail.com,555-0102

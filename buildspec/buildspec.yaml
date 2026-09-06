@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.10
+    commands:
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - flake8 src/ tests/ --max-line-length=120 --statistics
+      - pytest tests/ -v
+  build:
+    commands:
+      - mkdir -p dist/scripts dist/config
+      - cp src/glue/*.py dist/scripts/
+      - cp config/dev.yaml dist/config/
+  post_build:
+    commands:
+      - echo "Build completed on $(date)"
+artifacts:
+  files:
+    - dist/**/*

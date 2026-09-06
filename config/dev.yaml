@@ -1,0 +1,118 @@
+version: "1.0"
+environment: "dev"
+
+datasets:
+  employee_master:
+    source_format: "csv"
+    raw_path: "bronze/employee_master"
+    target_silver: "silver/employee_master"
+    business_keys: ["emp_id"]
+    schema:
+      - { name: "emp_id", type: "string", nullable: false }
+      - { name: "emp_name", type: "string", nullable: true }
+      - { name: "ssn", type: "string", nullable: true, phi_mask: true }
+      - { name: "email", type: "string", nullable: true, phi_mask: true }
+      - { name: "phone_number", type: "string", nullable: true, phi_mask: true }
+      - { name: "supervisor", type: "string", nullable: true }
+      - { name: "active", type: "string", nullable: true }
+      - { name: "city", type: "string", nullable: true }
+      - { name: "statecode", type: "string", nullable: true }
+      - { name: "zipcode", type: "string", nullable: true }
+      - { name: "primary_job", type: "string", nullable: true }
+      - { name: "created_date", type: "timestamp", nullable: true }
+    dq_rules:
+      mandatory_columns: ["emp_id", "active", "created_date"]
+      temporal_checks: ["created_date"]
+
+  test_master:
+    source_format: "csv"
+    raw_path: "bronze/test_master"
+    target_silver: "silver/test_master"
+    business_keys: ["test_id"]
+    schema:
+      - { name: "test_id", type: "string", nullable: false }
+      - { name: "test_name", type: "string", nullable: true }
+      - { name: "provider_name", type: "string", nullable: true }
+      - { name: "provider_location", type: "string", nullable: true }
+      - { name: "emp_id", type: "string", nullable: false }
+      - { name: "order_date", type: "timestamp", nullable: true }
+      - { name: "status", type: "string", nullable: true }
+      - { name: "amount", type: "double", nullable: true }
+      - { name: "quantity", type: "integer", nullable: true }
+    dq_rules:
+      mandatory_columns: ["test_id", "emp_id", "order_date", "status"]
+      temporal_checks: ["order_date"]
+      valid_domains:
+        status: ["Ordered", "In Progress", "Completed", "Cancelled"]
+      referential_integrity:
+        parent_table: "employee_master"
+        parent_key: "emp_id"
+        foreign_key: "emp_id"
+
+  lab_results:
+    source_format: "csv"
+    raw_path: "bronze/lab_results"
+    target_silver: "silver/lab_results"
+    business_keys: ["result_id"]
+    schema:
+      - { name: "result_id", type: "string", nullable: false }
+      - { name: "test_id", type: "string", nullable: false }
+      - { name: "emp_id", type: "string", nullable: false }
+      - { name: "test_name", type: "string", nullable: true }
+      - { name: "loinc_code", type: "string", nullable: true }
+      - { name: "result_date", type: "timestamp", nullable: true }
+      - { name: "result_status", type: "string", nullable: true }
+      - { name: "result_value", type: "string", nullable: true }
+      - { name: "units", type: "string", nullable: true }
+      - { name: "comments", type: "string", nullable: true }
+    dq_rules:
+      mandatory_columns: ["result_id", "test_id", "emp_id", "result_date", "result_status"]
+      temporal_checks: ["result_date"]
+
+  survey_master:
+    source_format: "csv"
+    raw_path: "bronze/survey_master"
+    target_silver: "silver/survey_master"
+    business_keys: ["survey_id"]
+    schema:
+      - { name: "survey_id", type: "string", nullable: false }
+      - { name: "survey_name", type: "string", nullable: true }
+      - { name: "provider_name", type: "string", nullable: true }
+      - { name: "provider_location", type: "string", nullable: true }
+      - { name: "emp_id", type: "string", nullable: false }
+      - { name: "order_date", type: "timestamp", nullable: true }
+      - { name: "completion_date", type: "timestamp", nullable: true }
+      - { name: "status", type: "string", nullable: true }
+      - { name: "answers_raw", type: "string", nullable: true }
+    dq_rules:
+      mandatory_columns: ["survey_id", "emp_id", "order_date"]
+      temporal_checks: ["order_date"]
+
+  incident_master:
+    source_format: "csv"
+    raw_path: "bronze/incident_master"
+    target_silver: "silver/incident_master"
+    business_keys: ["incident_id"]
+    schema:
+      - { name: "incident_id", type: "string", nullable: false }
+      - { name: "incident_date", type: "timestamp", nullable: true }
+      - { name: "incident_type", type: "string", nullable: true }
+      - { name: "location", type: "string", nullable: true }
+      - { name: "emp_id", type: "string", nullable: false }
+      - { name: "witness_emp_id", type: "string", nullable: true }
+      - { name: "description", type: "string", nullable: true }
+      - { name: "severity_level", type: "string", nullable: true }
+    dq_rules:
+      mandatory_columns: ["incident_id", "emp_id", "incident_date"]
+      temporal_checks: ["incident_date"]
+
+gold_marts:
+  fact_test_order:
+    target_path: "gold/fact_test_order"
+    partition_by: ["order_dt"]
+    overdue_days_threshold: 7
+    tat_upper_bound_days: 30
+
+  health_summary:
+    target_path: "gold/health_summary_output"
+    partition_by: ["report_date"]

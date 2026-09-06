@@ -1,0 +1,40 @@
+# Terraform State & Lock files (CRITICAL SECURITY)
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+.terraform.lock.hcl
+crash.log
+
+# Python & PySpark Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+*.whl
+
+# PySpark / Derby Local Metastore
+metastore_db/
+derby.log
+spark-warehouse/
+.spark-staging/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local Deployment Binaries
+*.zip
+*.tar.gz
+*.jar
+
+# IDE & OS Specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

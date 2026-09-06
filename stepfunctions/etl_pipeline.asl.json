@@ -1,0 +1,121 @@
+{
+    "Comment": "Enterprise Healthcare Data Platform Orchestration Pipeline",
+    "StartAt": "ValidateLandingPayload",
+    "States": {
+        "ValidateLandingPayload": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {
+                "FunctionName": "${check_s3_file_lambda_arn}",
+                "Payload.$": "$"
+            },
+            "ResultSelector": {
+                "validation.$": "$.Payload"
+            },
+            "ResultPath": "$.validationResult",
+            "Next": "IsPayloadValid",
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 3,
+                    "BackoffRate": 2.0
+                }
+            ],
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "ResultPath": "$.error",
+                    "Next": "NotifyPipelineFailure"
+                }
+            ]
+        },
+        "IsPayloadValid": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.validationResult.validation.isValid",
+                    "BooleanEquals": true,
+                    "Next": "ExecuteGlueETLJob"
+                }
+            ],
+            "Default": "NotifyInvalidPayload"
+        },
+        "ExecuteGlueETLJob": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::glue:startJobRun.sync",
+            "Parameters": {
+                "JobName": "${glue_job_name}",
+                "Arguments": {
+                    "--JOB_NAME.$": "$$.Execution.Id",
+                    "--S3_BUCKET_NAME": "${s3_data_bucket}",
+                    "--ENVIRONMENT": "${environment}"
+                }
+            },
+            "ResultPath": "$.glueResult",
+            "Next": "NotifyPipelineSuccess",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "ResultPath": "$.error",
+                    "Next": "NotifyPipelineFailure"
+                }
+            ]
+        },
+        "NotifyInvalidPayload": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sns:publish",
+            "Parameters": {
+                "TopicArn": "${sns_alert_topic_arn}",
+                "Subject": "EHS ETL Alert: Ingestion Payload Rejected",
+                "Message": {
+                    "alert": "Invalid Landing Payload",
+                    "pipeline": "Healthcare-EHS-ETL",
+                    "details.$": "$.validationResult.validation"
+                }
+            },
+            "Next": "PipelineExecutionFailed"
+        },
+        "NotifyPipelineFailure": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sns:publish",
+            "Parameters": {
+                "TopicArn": "${sns_alert_topic_arn}",
+                "Subject": "EHS ETL CRITICAL: Pipeline Execution Failed",
+                "Message": {
+                    "status": "FAILED",
+                    "executionId.$": "$$.Execution.Id",
+                    "errorDetails.$": "$.error"
+                }
+            },
+            "Next": "PipelineExecutionFailed"
+        },
+        "NotifyPipelineSuccess": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sns:publish",
+            "Parameters": {
+                "TopicArn": "${sns_alert_topic_arn}",
+                "Subject": "EHS ETL SUCCESS: Curated Marts & FHIR Published",
+                "Message": {
+                    "status": "SUCCESS",
+                    "executionId.$": "$$.Execution.Id",
+                    "layer": "Gold"
+                }
+            },
+            "End": true
+        },
+        "PipelineExecutionFailed": {
+            "Type": "Fail",
+            "Cause": "Pipeline failed validation checks or Glue ETL job execution encountered an error.",
+            "Error": "PipelineExecutionError"
+        }
+    }
+}
