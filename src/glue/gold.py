@@ -16,7 +16,7 @@ class GoldProcessor:
             tests.join(lab.select("test_id", "result_id", "result_date", "result_status", "result_value", "units"), "test_id", "left")
             .join(emp.select("emp_id", "statecode", "city", "supervisor"), "emp_id", "left")
             .withColumn("order_dt", F.to_date("order_date"))
-            .withColumn("result_dt", F.to_date("result_date"))
+            .withColumn("tat_days", F.round((F.to_timestamp(F.col("result_date")).cast("long") - F.to_timestamp(F.col("order_date")).cast("long")) / 86400.0, 2))
             .withColumn("tat_days", F.round((F.col("result_date").cast("long") - F.col("order_date").cast("long")) / 86400.0, 2))
             .withColumn("is_abnormal", F.when(F.lower(F.col("result_status")) == "abnormal", 1).otherwise(0))
             .withColumn("is_overdue", F.when((F.col("status").isin("Ordered", "In Progress")) & (F.current_date() > F.date_add(F.col("order_dt"), 7)), 1).otherwise(0))
