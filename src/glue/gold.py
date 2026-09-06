@@ -1,6 +1,10 @@
 from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
-from transformations import GenericTransformer
+
+try:
+    from src.glue.transformations import GenericTransformer
+except ModuleNotFoundError:
+    from transformations import GenericTransformer
 
 class GoldProcessor:
     def __init__(self, config: dict):
