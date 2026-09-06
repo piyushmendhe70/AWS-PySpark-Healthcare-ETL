@@ -1,7 +1,7 @@
-variable "environment"    { type = string }
-variable "project_name"   { type = string }
+variable "environment" { type = string }
+variable "project_name" { type = string }
 variable "s3_bucket_name" { type = string }
-variable "s3_bucket_arn"  { type = string }
+variable "s3_bucket_arn" { type = string }
 
 data "archive_file" "lambda_zip" {
   type        = "zip"
@@ -59,5 +59,5 @@ resource "aws_lambda_function" "check_s3_file" {
   }
 }
 
-output "lambda_arn"  { value = aws_lambda_function.check_s3_file.arn }
+output "lambda_arn" { value = aws_lambda_function.check_s3_file.arn }
 output "lambda_name" { value = aws_lambda_function.check_s3_file.function_name }

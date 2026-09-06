@@ -1,9 +1,9 @@
-variable "environment"                { type = string }
-variable "project_name"               { type = string }
-variable "check_s3_file_lambda_arn"   { type = string }
-variable "glue_job_name"              { type = string }
-variable "s3_data_bucket"             { type = string }
-variable "sns_alert_topic_arn"        { type = string }
+variable "environment" { type = string }
+variable "project_name" { type = string }
+variable "check_s3_file_lambda_arn" { type = string }
+variable "glue_job_name" { type = string }
+variable "s3_data_bucket" { type = string }
+variable "sns_alert_topic_arn" { type = string }
 
 resource "aws_iam_role" "sfn_role" {
   name = "${var.project_name}-${var.environment}-sfn-role"

@@ -30,4 +30,4 @@ resource "aws_s3_bucket_public_access_block" "lake_public_block" {
 }
 
 output "bucket_name" { value = aws_s3_bucket.data_lake.id }
-output "bucket_arn"  { value = aws_s3_bucket.data_lake.arn }
+output "bucket_arn" { value = aws_s3_bucket.data_lake.arn }

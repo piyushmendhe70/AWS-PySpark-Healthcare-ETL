@@ -1,7 +1,7 @@
-variable "environment"     { type = string }
-variable "project_name"    { type = string }
-variable "s3_bucket_name"  { type = string }
-variable "s3_bucket_arn"   { type = string }
+variable "environment" { type = string }
+variable "project_name" { type = string }
+variable "s3_bucket_name" { type = string }
+variable "s3_bucket_arn" { type = string }
 
 resource "aws_iam_role" "glue_role" {
   name = "${var.project_name}-${var.environment}-glue-role"
@@ -43,12 +43,12 @@ resource "aws_glue_catalog_database" "ehs_catalog" {
 }
 
 resource "aws_glue_job" "ehs_etl_job" {
-  name         = "${var.project_name}-${var.environment}-etl"
-  role_arn     = aws_iam_role.glue_role.arn
-  glue_version = "4.0"
-  worker_type  = "G.1X"
+  name              = "${var.project_name}-${var.environment}-etl"
+  role_arn          = aws_iam_role.glue_role.arn
+  glue_version      = "4.0"
+  worker_type       = "G.1X"
   number_of_workers = 5
-  timeout      = 60
+  timeout           = 60
 
   command {
     name            = "glueetl"
@@ -65,4 +65,4 @@ resource "aws_glue_job" "ehs_etl_job" {
 }
 
 output "glue_job_name" { value = aws_glue_job.ehs_etl_job.name }
-output "glue_job_arn"  { value = aws_glue_job.ehs_etl_job.arn }
+output "glue_job_arn" { value = aws_glue_job.ehs_etl_job.arn }
