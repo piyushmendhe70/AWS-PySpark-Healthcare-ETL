@@ -6,21 +6,43 @@ try:
 except ModuleNotFoundError:
     from transformations import GenericTransformer
 
+
 class GoldProcessor:
     def __init__(self, config: dict):
         self.config = config
 
     @staticmethod
     def build_fact_test_orders(tests: DataFrame, lab: DataFrame, emp: DataFrame) -> DataFrame:
+        lab_sub = lab.select("test_id", "result_id", "result_date", "result_status", "result_value", "units")
+        emp_sub = emp.select("emp_id", "statecode", "city", "supervisor")
+
         joined = (
-            tests.join(lab.select("test_id", "result_id", "result_date", "result_status", "result_value", "units"), "test_id", "left")
-            .join(emp.select("emp_id", "statecode", "city", "supervisor"), "emp_id", "left")
-            .withColumn("order_dt", F.to_date("order_date"))
-            .withColumn("tat_days", F.round((F.to_timestamp(F.col("result_date")).cast("long") - F.to_timestamp(F.col("order_date")).cast("long")) / 86400.0, 2))
-            .withColumn("tat_days", F.round((F.col("result_date").cast("long") - F.col("order_date").cast("long")) / 86400.0, 2))
+            tests.join(lab_sub, "test_id", "left")
+            .join(emp_sub, "emp_id", "left")
+            .withColumn("order_dt", F.to_date(F.col("order_date")))
+            .withColumn("result_dt", F.to_date(F.col("result_date")))
+            .withColumn(
+                "tat_days",
+                F.when(
+                    F.col("result_date").isNotNull() & F.col("order_date").isNotNull(),
+                    F.datediff(F.to_date(F.col("result_date")), F.to_date(F.col("order_date"))).cast("double")
+                ).otherwise(F.lit(None))
+            )
             .withColumn("is_abnormal", F.when(F.lower(F.col("result_status")) == "abnormal", 1).otherwise(0))
-            .withColumn("is_overdue", F.when((F.col("status").isin("Ordered", "In Progress")) & (F.current_date() > F.date_add(F.col("order_dt"), 7)), 1).otherwise(0))
-            .withColumn("followup_priority", F.when(F.col("is_abnormal") == 1, "High").when(F.col("is_overdue") == 1, "Medium").otherwise("Low"))
+            .withColumn(
+                "is_overdue",
+                F.when(
+                    (F.col("status").isin("Ordered", "In Progress")) &
+                    (F.current_date() > F.date_add(F.col("order_dt"), 7)),
+                    1
+                ).otherwise(0)
+            )
+            .withColumn(
+                "followup_priority",
+                F.when(F.col("is_abnormal") == 1, "High")
+                .when(F.col("is_overdue") == 1, "Medium")
+                .otherwise("Low")
+            )
         )
         return joined
 
