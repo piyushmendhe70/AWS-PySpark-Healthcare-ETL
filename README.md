@@ -24,54 +24,11 @@ An end-to-end, metadata-driven **Data Engineering & ETL Pipeline** deployed on A
 
 ---
 
-## 🏗 Architecture Overview
+## <a id="architecture"></a>🏗 Architecture
 
-The platform uses an event-driven serverless workflow orchestrated by **AWS Step Functions**, decoupling initial file inspection from resource-intensive Spark workloads:
+![AWS Healthcare Lakehouse Architecture](docs/architecture.png)
 
-```text
- ┌────────────────────────────────────────────────────────────────────────────────────────┐
- │                              UPSTREAM HEALTHCARE SYSTEMS                              │
- │   Hospital EHRs (Cerner/Epic) │ Third-Party Lab Networks │ MySQL EHS Operational DBs  │
- └───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                             │ Secure File Drops (SFTP / REST API)
-                                             ▼
- ┌────────────────────────────────────────────────────────────────────────────────────────┐
- │                      AWS EVENT-DRIVEN ORCHESTRATION PIPELINE                           │
- │                                                                                        │
- │   1. Ingestion Gate       2. Pre-Validation         3. State Orchestration             │
- │   ┌─────────────────┐     ┌──────────────────┐      ┌──────────────────────────────┐   │
- │   │ Amazon S3       │────▶│ AWS Lambda       │─────▶│ AWS Step Functions           │   │
- │   │ Bronze (Raw)    │     │ Ingestion Gate   │      │ • Choice State               │   │
- │   └─────────────────┘     └──────────────────┘      │ • Glue Synchronous Execution │   │
- │                                                     │ • SNS Alert Notifications    │   │
- │                                                     └──────────────┬───────────────┘   │
- └────────────────────────────────────────────────────────────────────┼───────────────────┘
-                                                                      │ Triggers (.sync)
-                                                                      ▼
- ┌────────────────────────────────────────────────────────────────────────────────────────┐
- │                         CORE PYSPARK PROCESSING (AWS GLUE 4.0)                         │
- │                                                                                        │
- │   BRONZE LAYER                 SILVER LAYER                     GOLD LAYER             │
- │   ┌────────────────────┐       ┌────────────────────────┐       ┌──────────────────┐   │
- │   │ Metadata Reader    │       │ Cleansing & Masking    │       │ Dimensional Marts│   │
- │   │ • Dynamic Schemas  │──────▶│ • Salted SHA-256 Mask  │──────▶│ • DimEmployee    │   │
- │   │ • config/dev.yaml  │       │ • Natural Key Dedup    │       │ • FactTestOrder  │   │
- │   │ • Permissive Catch │       │ • 20+ DQ Quality Gates │       │ • Health Summary │   │
- │   └────────────────────┘       └───────────┬────────────┘       │ • FHIR R4 Obs    │   │
- │                                            │                    └─────────┬────────┘   │
- │                                            ▼                              │            │
- │                                ┌────────────────────────┐                 │            │
- │                                │ S3 Quarantine Zone     │                 │            │
- │                                │ (Corrupt / Bad Feeds)  │                 │            │
- │                                └────────────────────────┘                 │            │
- └───────────────────────────────────────────────────────────────────────────┼────────────┘
-                                                                             │
-                                                                             ▼
- ┌────────────────────────────────────────────────────────────────────────────────────────┐
- │                                CONSUMPTION & ANALYTICS                                 │
- │          Amazon Redshift / Athena          │      Executive Operational Dashboards     │
- └────────────────────────────────────────────────────────────────────────────────────────┘
-```
+
 
 ## 🚀 Key Engineering Capabilities
 
