@@ -1,0 +1,250 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="1Ol5JLl3W_Dk6OEN_qez">
+    <mxGraphModel dx="2590" dy="1076" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="header_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#38BDF8;strokeWidth=2;align=left;spacingLeft=20;shadow=1;" value="&lt;font style=&quot;font-size: 20px;&quot; color=&quot;#F8FAFC&quot;&gt;&lt;b&gt;AWS PySpark Healthcare Medallion Lakehouse &amp;amp; CI/CD Architecture&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#94A3B8&quot;&gt;Event-Driven ETL | Dynamic YAML Schema Validation | Salted Skew Mitigation &amp;amp; Broadcast Joins | Terraform IaC | Author: Piyush Mendhe&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="1170" x="40" y="20" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;b&gt;🔗 View Source on GitHub&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;(Click to open repository)&lt;/font&gt;" link="https://github.com/piyushmendhe70/AWS-PySpark-Healthcare-ETL" id="btn_github">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0284C7;strokeColor=#38BDF8;fontColor=#FFFFFF;strokeWidth=2;shadow=1;cursor=pointer;" vertex="1">
+            <mxGeometry height="50" width="200" x="1230" y="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;⚡ Toggle PySpark Specs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;(Click to Play/Toggle Layer)&lt;/font&gt;" link="data:action/json,{&quot;actions&quot;:[{&quot;toggle&quot;:{&quot;cells&quot;:[&quot;opt_container&quot;,&quot;opt_1&quot;,&quot;opt_2&quot;,&quot;opt_3&quot;,&quot;edge_opt1&quot;,&quot;edge_opt2&quot;]}}]}" id="btn_toggle_opt">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=#C084FC;fontColor=#FFFFFF;strokeWidth=2;shadow=1;cursor=pointer;" vertex="1">
+            <mxGeometry height="50" width="200" x="1450" y="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;b&gt;🛠️ Toggle CI/CD &amp;amp; IaC&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;(Click to Play/Toggle Layer)&lt;/font&gt;" link="data:action/json,{&quot;actions&quot;:[{&quot;toggle&quot;:{&quot;cells&quot;:[&quot;cicd_container&quot;,&quot;cicd_gh&quot;,&quot;cicd_cp&quot;,&quot;cicd_cb&quot;,&quot;cicd_tf&quot;,&quot;cicd_iam&quot;,&quot;e_cicd1&quot;,&quot;e_cicd2&quot;,&quot;e_cicd3&quot;,&quot;e_cicd4&quot;,&quot;e_cicd_prov&quot;]}}]}" id="btn_toggle_cicd">
+          <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#059669;strokeColor=#34D399;fontColor=#FFFFFF;strokeWidth=2;shadow=1;cursor=pointer;" vertex="1">
+            <mxGeometry height="50" width="210" x="1670" y="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="cicd_container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#64748B;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=15;spacingTop=8;fontColor=#38BDF8;fontSize=13;dashed=1;" value="&lt;b&gt;1. AUTOMATED CI/CD &amp;amp; INFRASTRUCTURE AS CODE (TERRAFORM) PIPELINE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="135" width="1840" x="40" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="cicd_gh" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;GitHub Repository&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;AWS-PySpark-Healthcare-ETL&lt;br&gt;(PySpark Jobs, YAML Rules, .tf files)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="260" x="70" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="cicd_cp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;AWS CodePipeline&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Automated Git Webhook Trigger&lt;br&gt;Source &amp;amp; Release Orchestration&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="260" x="430" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="cicd_cb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;AWS CodeBuild&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Pytest Suite, Flake8 Linting &amp;amp;&lt;br&gt;Packaging Scripts to S3 Artifacts&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="270" x="790" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="cicd_tf" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#A855F7;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Terraform IaC Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Declarative Provisioning of S3, Glue,&lt;br&gt;Lambda, Step Functions &amp;amp; State Lock&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="290" x="1160" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="cicd_iam" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#10B981;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;AWS IAM &amp;amp; KMS Security&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Least-Privilege Execution Roles,&lt;br&gt;S3 Bucket Policies &amp;amp; Encryption&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="290" x="1550" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cicd1" edge="1" parent="1" source="cicd_gh" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#38BDF8;strokeWidth=2;flowAnimation=1;fontColor=#94A3B8;fontSize=10;" target="cicd_cp" value="git push">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cicd2" edge="1" parent="1" source="cicd_cp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#38BDF8;strokeWidth=2;flowAnimation=1;fontColor=#94A3B8;fontSize=10;" target="cicd_cb" value="Trigger Build">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cicd3" edge="1" parent="1" source="cicd_cb" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A855F7;strokeWidth=2;flowAnimation=1;fontColor=#94A3B8;fontSize=10;" target="cicd_tf" value="terraform apply">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cicd4" edge="1" parent="1" source="cicd_tf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;flowAnimation=1;fontColor=#94A3B8;fontSize=10;" target="cicd_iam" value="Bind Policies">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ing_container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#F59E0B;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=15;spacingTop=8;fontColor=#FBBF24;fontSize=13;" value="&lt;b&gt;2. DATA SOURCES &amp;amp; EVENT-DRIVEN INGESTION&lt;/b&gt;" vertex="1">
+          <mxGeometry height="550" width="350" x="40" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="src_data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#F59E0B;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=12;" value="&lt;b&gt;Healthcare Raw Data Sources&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;• Patient EHR Demographics (CSV)&lt;br&gt;• Clinical Lab &amp;amp; ICD-10 Records (JSON)&lt;br&gt;• Hospital Insurance Claims Batches&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="300" x="65" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="s3_landing" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#0F172A;strokeColor=#F59E0B;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon S3: Landing Zone&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;s3://healthcare-etl-landing-zone/&lt;br&gt;(Raw Unvalidated Batch Arrivals)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="300" x="65" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda_trig" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#F59E0B;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon EventBridge + AWS Lambda&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Listens to s3:ObjectCreated:* Events&lt;br&gt;Validates File Prefix &amp;amp; Invokes Pipeline&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="300" x="65" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="yaml_cfg" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#0F172A;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;S3 Dynamic YAML Schema Config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Externalized Column Types, Mandatory&lt;br&gt;Keys &amp;amp; DQ Rules (Zero Hardcoding)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="65" y="715" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ing1" edge="1" parent="1" source="src_data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F59E0B;strokeWidth=2;flowAnimation=1;fontColor=#FDE68A;fontSize=10;" target="s3_landing" value="Batch Upload">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ing2" edge="1" parent="1" source="s3_landing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F59E0B;strokeWidth=2;flowAnimation=1;fontColor=#FDE68A;fontSize=10;" target="lambda_trig" value="S3 Event Notification">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="med_container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#38BDF8;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=15;spacingTop=8;fontColor=#38BDF8;fontSize=13;" value="&lt;b&gt;3. DISTRIBUTED PYSPARK MEDALLION LAKEHOUSE (AWS GLUE SERVERLESS + AMAZON S3)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="550" width="1065" x="415" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="step_fn" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#31102F;strokeColor=#EC4899;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;AWS Step Functions State Machine (Workflow Orchestration)&lt;/b&gt; — Manages Job Dependencies, Exponential Backoff Retries, Failure Catching &amp;amp; End-to-End Audit State" vertex="1">
+          <mxGeometry height="50" width="1015" x="440" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="glue_bronze" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#D97706;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=10;" value="&lt;b&gt;AWS Glue PySpark Job 1&lt;br&gt;[Raw-to-Bronze Ingestion]&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;• Reads Raw CSV/JSON from Landing&lt;br&gt;• Appends Audit Columns (batch_id, ts)&lt;br&gt;• Converts to Snappy Parquet Format&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="290" x="445" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="s3_bronze" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#271705;strokeColor=#D97706;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon S3: Bronze Layer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#FDE68A&quot;&gt;s3://.../bronze-layer/&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot; color=&quot;#CBD5E1&quot;&gt;Immutable Raw Parquet Tables&lt;br&gt;Partitioned by ingestion_date&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="250" x="465" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="glue_silver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=10;" value="&lt;b&gt;AWS Glue PySpark Job 2&lt;br&gt;[Bronze-to-Silver Transformation]&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;• Dynamic YAML Schema Validation&lt;br&gt;• Key Salting for Skewed Provider Joins&lt;br&gt;• Broadcast Joins for ICD-10 Lookups&lt;br&gt;• SCD Type-2 Historical Record Tracking&lt;/font&gt;" vertex="1">
+          <mxGeometry height="135" width="310" x="790" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="dq_gate" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#1E1B4B;strokeColor=#818CF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Schema &amp;amp; DQ&lt;br&gt;Validation Gate&lt;/b&gt;" vertex="1">
+          <mxGeometry height="75" width="170" x="860" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="s3_silver" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#082F49;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon S3: Silver Layer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#BAE6FD&quot;&gt;s3://.../silver-layer/&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot; color=&quot;#CBD5E1&quot;&gt;Cleansed, Deduplicated &amp;amp; Conformed&lt;br&gt;SCD Type-2 Clinical &amp;amp; Patient Tables&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="260" x="815" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="glue_gold" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#EAB308;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=10;" value="&lt;b&gt;AWS Glue PySpark Job 3&lt;br&gt;[Silver-to-Gold Star Schema]&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;• Builds Fact_Claims &amp;amp; Dim_Patient&lt;br&gt;• Readmission &amp;amp; Cost Aggregations&lt;br&gt;• Coalesce() Tuning (128MB Parquet Files)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="295" x="1155" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="s3_gold" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#2E2604;strokeColor=#EAB308;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon S3: Gold Layer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#FEF08A&quot;&gt;s3://.../gold-layer/&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot; color=&quot;#CBD5E1&quot;&gt;Business-Ready Star Schema &amp;amp;&lt;br&gt;Executive Healthcare KPI Marts&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="260" x="1175" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="e_trig_sf" edge="1" parent="1" source="lambda_trig" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EC4899;strokeWidth=2;flowAnimation=1;fontColor=#F472B6;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_fn" value="StartExecution">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="395" y="638" />
+              <mxPoint x="395" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_sf1" edge="1" parent="1" source="step_fn" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EC4899;strokeWidth=2;dashed=1;flowAnimation=1;fontColor=#F472B6;fontSize=10;" target="glue_bronze" value="Step 1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sf2" edge="1" parent="1" source="step_fn" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EC4899;strokeWidth=2;dashed=1;flowAnimation=1;fontColor=#F472B6;fontSize=10;" target="glue_silver" value="Step 2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sf3" edge="1" parent="1" source="step_fn" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EC4899;strokeWidth=2;dashed=1;flowAnimation=1;fontColor=#F472B6;fontSize=10;" target="glue_gold" value="Step 3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_land_b" edge="1" parent="1" source="s3_landing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F59E0B;strokeWidth=2;flowAnimation=1;fontColor=#FDE68A;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="glue_bronze" value="Read Raw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_write" edge="1" parent="1" source="glue_bronze" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;flowAnimation=1;fontColor=#FDE68A;fontSize=10;" target="s3_bronze" value="Write Parquet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_b_read" edge="1" parent="1" source="s3_bronze" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#38BDF8;strokeWidth=2;flowAnimation=1;fontColor=#BAE6FD;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="glue_silver" value="Read Bronze">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="755" y="733" />
+              <mxPoint x="755" y="468" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_yaml_s" edge="1" parent="1" source="yaml_cfg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#38BDF8;strokeWidth=2;dashed=1;flowAnimation=1;fontColor=#BAE6FD;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="glue_silver" value="Load Schema Rules">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="755" />
+              <mxPoint x="740" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_s_gate" edge="1" parent="1" source="glue_silver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#818CF8;strokeWidth=2;flowAnimation=1;fontColor=#C7D2FE;fontSize=10;" target="dq_gate" value="Evaluate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gate_pass" edge="1" parent="1" source="dq_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=3;flowAnimation=1;fontColor=#6EE7B7;fontSize=10;" target="s3_silver" value="Valid Records">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s_read" edge="1" parent="1" source="s3_silver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EAB308;strokeWidth=2;flowAnimation=1;fontColor=#FEF08A;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="glue_gold" value="Read Silver">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1125" y="733" />
+              <mxPoint x="1125" y="463" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_g_write" edge="1" parent="1" source="glue_gold" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EAB308;strokeWidth=2;flowAnimation=1;fontColor=#FEF08A;fontSize=10;" target="s3_gold" value="Write Star Schema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gov_container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#10B981;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=15;spacingTop=8;fontColor=#34D399;fontSize=13;" value="&lt;b&gt;4. METADATA CATALOG &amp;amp; ANALYTICS SERVING&lt;/b&gt;" vertex="1">
+          <mxGeometry height="550" width="375" x="1505" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="glue_cat" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#10B981;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;AWS Glue Data Catalog &amp;amp; Crawlers&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Automated Schema Discovery,&lt;br&gt;Partition Registration &amp;amp; Hive Metastore&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="315" x="1535" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="athena" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#10B981;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon Athena (Serverless SQL)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Presto/Trino Engine Querying S3 Gold&lt;br&gt;with Partition Pruning &amp;amp; Columnar Projection&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="315" x="1535" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="bi_dash" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#38BDF8;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Downstream BI &amp;amp; Clinical Analytics&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Hospital Readmission Reporting,&lt;br&gt;Claims Fraud Detection &amp;amp; KPI Dashboards&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="315" x="1535" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gold_cat" edge="1" parent="1" source="s3_gold" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;dashed=1;flowAnimation=1;fontColor=#6EE7B7;fontSize=10;exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="glue_cat" value="Crawl Partitions">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1490" y="704" />
+              <mxPoint x="1490" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_gold_ath" edge="1" parent="1" source="s3_gold" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;flowAnimation=1;fontColor=#6EE7B7;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="athena" value="Query Parquet">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="733" />
+              <mxPoint x="1515" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cat_ath" edge="1" parent="1" source="glue_cat" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;flowAnimation=1;fontColor=#6EE7B7;fontSize=10;" target="athena" value="Table Metadata">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ath_bi" edge="1" parent="1" source="athena" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#38BDF8;strokeWidth=2;flowAnimation=1;fontColor=#BAE6FD;fontSize=10;" target="bi_dash" value="JDBC / SQL Results">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dlq_container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#EF4444;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=15;spacingTop=8;fontColor=#F87171;fontSize=13;" value="&lt;b&gt;5. AUTOMATED DEAD-LETTER QUEUE (DLQ) &amp;amp; OBSERVABILITY&lt;/b&gt;" vertex="1">
+          <mxGeometry height="215" width="760" x="40" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="s3_dlq" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#3B0707;strokeColor=#EF4444;fontColor=#F8FAFC;strokeWidth=2;" value="&lt;b&gt;Amazon S3: Quarantine / DLQ&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#FCA5A5&quot;&gt;s3://.../quarantine-dlq/&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot; color=&quot;#CBD5E1&quot;&gt;Isolates Schema Drift &amp;amp; Corrupt Payloads&lt;br&gt;Without Halting Batch Execution&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="290" x="75" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="cw_sns" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#EF4444;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=12;" value="&lt;b&gt;Amazon CloudWatch Logs &amp;amp; Amazon SNS Alerts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;• Tracks Spark Executor Memory &amp;amp; Shuffle Spill Metrics&lt;br&gt;• Dispatches Real-Time Email/Slack Alerts on DQ Threshold Breach&lt;br&gt;• Logs Exact Rejection Reason for Automated Replay&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="340" x="430" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gate_dlq" edge="1" parent="1" source="dq_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EF4444;strokeWidth=3;flowAnimation=1;fontColor=#FCA5A5;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="s3_dlq" value="Malformed / Schema Mismatch (Non-Blocking)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="603" />
+              <mxPoint x="780" y="830" />
+              <mxPoint x="220" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dlq_sns" edge="1" parent="1" source="s3_dlq" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EF4444;strokeWidth=2;flowAnimation=1;fontColor=#FCA5A5;fontSize=10;" target="cw_sns" value="Trigger Alert">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="opt_container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#A855F7;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=15;spacingTop=8;fontColor=#C084FC;fontSize=13;" value="&lt;b&gt;6. PYSPARK DISTRIBUTED ENGINE OPTIMIZATIONS (HIGH-VOLUME TUNING SPECS)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="215" width="1050" x="830" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="opt_1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#A855F7;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=10;" value="&lt;b&gt;⚡ 1. Skew Mitigation (Key Salting)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Resolves Executor OOMs on dominant hospital provider_ids by appending random salt:&lt;br&gt;&lt;font color=&quot;#38BDF8&quot;&gt;concat(key, &#39;_&#39;, floor(rand() * 10))&lt;/font&gt;&lt;br&gt;prior to wide joins/aggregations.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="135" width="320" x="855" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="opt_2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#A855F7;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=10;" value="&lt;b&gt;⚡ 2. Shuffle Elimination (Broadcast)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;Replaces SortMergeJoin with:&lt;br&gt;&lt;font color=&quot;#38BDF8&quot;&gt;F.broadcast(dim_icd10_lookup)&lt;/font&gt;&lt;br&gt;Eliminates network shuffle across Glue DPUs for dimension tables under 10MB.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="135" width="320" x="1200" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="opt_3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#A855F7;fontColor=#F8FAFC;strokeWidth=2;align=left;spacingLeft=10;" value="&lt;b&gt;⚡ 3. AQE &amp;amp; Storage Optimization&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;font-size:11px;&quot; color=&quot;#CBD5E1&quot;&gt;• Adaptive Query Execution (AQE) enabled&lt;br&gt;• Dynamic Partition Coalescing&lt;br&gt;• Snappy Parquet Predicate Pushdown&lt;br&gt;• Prevents S3 Small-File Overhead&lt;/font&gt;" vertex="1">
+          <mxGeometry height="135" width="310" x="1545" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_opt1" edge="1" parent="1" source="opt_1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A855F7;strokeWidth=2;dashed=1;flowAnimation=1;" target="glue_silver">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1015" y="820" />
+              <mxPoint x="1105" y="820" />
+              <mxPoint x="1105" y="468" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_opt2" edge="1" parent="1" source="opt_3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A855F7;strokeWidth=2;dashed=1;flowAnimation=1;" target="glue_gold">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1700" y="820" />
+              <mxPoint x="1465" y="820" />
+              <mxPoint x="1465" y="463" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cicd_prov" edge="1" parent="1" source="cicd_tf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A855F7;strokeWidth=2;dashed=1;flowAnimation=1;fontColor=#C084FC;fontSize=10;" target="med_container" value="Provisions Infrastructure">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
