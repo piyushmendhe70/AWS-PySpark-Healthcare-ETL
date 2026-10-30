@@ -26,7 +26,7 @@ An end-to-end, metadata-driven **Data Engineering & ETL Pipeline** deployed on A
 
 ## <a id="architecture"></a>🏗 Architecture
 
-![AWS Healthcare Lakehouse Architecture](docs/architecture.png)
+[![AWS Healthcare Lakehouse Architecture](docs/architecture.gif)](https://viewer.diagrams.net/?highlight=0000ff&edit=_blank&layers=1&nav=1&title=AWS-Healthcare-Lakehouse-Architecture#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fpiyushmendhe70%2FAWS-PySpark-Healthcare-ETL%2Fmain%2Fdocs%2Farchitecture.drawio)
 
 
 
